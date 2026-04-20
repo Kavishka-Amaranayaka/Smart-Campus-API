@@ -12,29 +12,29 @@ This API provides a robust, scalable interface for the University's Smart Campus
 
 ### Architecture Decisions
 
-**JAX-RS (Jersey 2.39.1)** - Pure JAX-RS implementation, no Spring Boot.
-**In-memory storage** - ConcurrentHashMap for thread-safe data management (no database).
-**Singleton DataStore** - Shared application state across all request-scoped resource instances.
-**Sub-Resource Locator Pattern** - Sensor readings delegated to dedicated SensorReadingResource class.
-**Exception Mappers** - Custom mappers for 409, 422, 403, and 500 HTTP responses.
-**JAX-RS Filter** - Centralized request/response logging via ContainerRequestFilter & ContainerResponseFilter.
-**HATEOAS** - Discovery endpoint provides navigational links to all resources.
+- **JAX-RS (Jersey 2.39.1)** - Pure JAX-RS implementation, no Spring Boot.
+- **In-memory storage** - ConcurrentHashMap for thread-safe data management (no database).
+- **Singleton DataStore** - Shared application state across all request-scoped resource instances.
+- **Sub-Resource Locator Pattern** - Sensor readings delegated to dedicated SensorReadingResource class.
+- **Exception Mappers** - Custom mappers for 409, 422, 403, and 500 HTTP responses.
+- **JAX-RS Filter** - Centralized request/response logging via ContainerRequestFilter & ContainerResponseFilter.
+- **HATEOAS** - Discovery endpoint provides navigational links to all resources.
 
 ### Resource Hierarchy
 
-**/api/v1**                              <- Discovery + HATEOAS links, 
-**/api/v1/rooms**                        <- Room collection, 
-**/api/v1/rooms/{roomId}**               <- Individual room,
-**/api/v1/sensors**                      <- Sensor collection (supports ?type= filter),
-**/api/v1/sensors/{sensorId}**           <- Individual sensor,
-**/api/v1/sensors/{sensorId}/readings**  <- Sensor reading history (sub-resource).
+- **/api/v1**                              <- Discovery + HATEOAS links.
+- **/api/v1/rooms**                        <- Room collection.
+- **/api/v1/rooms/{roomId}**               <- Individual room.
+- **/api/v1/sensors**                      <- Sensor collection (supports ?type= filter).
+- **/api/v1/sensors/{sensorId}**           <- Individual sensor.
+- **/api/v1/sensors/{sensorId}/readings**  <- Sensor reading history (sub-resource).
 
 ### Error Handling Strategy
 
-409 Conflict - Deleting a room that still has sensors assigned,  
-422 Unprocessable Entity - Registering a sensor with a non-existent roomId, 
-403 Forbidden - Posting a reading to a MAINTENANCE/OFFLINE sensor, 
-500 Internal Server Error - Any unexpected runtime error (no stack trace exposed). 
+- **409 Conflict** - Deleting a room that still has sensors assigned. 
+- **422 Unprocessable Entity** - Registering a sensor with a non-existent roomId.
+- **403 Forbidden** - Posting a reading to a MAINTENANCE/OFFLINE sensor.
+- **500 Internal Server Error** - Any unexpected runtime error (no stack trace exposed). 
 
 
 ## Build & Run Instructions
@@ -89,8 +89,8 @@ You should see a JSON discovery response with API metadata and HATEOAS links.
 ## Endpoint Reference
 
 ### Discovery
-### Method  Endpoint    Description 
-GET         '/api/v1'   API metadata + HATEOAS navigation links 
+- ### Method  Endpoint    Description 
+  GET         '/api/v1'   API metadata + HATEOAS navigation links.
 
 ### Room Management
 ### Method  Endpoint                  Description                             Success 
