@@ -6,9 +6,9 @@ A fully RESTful JAX-RS API built with Jersey 2.39.1 on Apache Tomcat for managin
 
 This API provides a robust, scalable interface for the University's Smart Campus initiative. It manages three core resources:
 
-**Rooms** - Physical campus locations (libraries, labs, halls) with capacity management.
-**Sensors** - IoT devices deployed inside rooms (Temperature, CO2, Occupancy).
-**Sensor Readings** - Historical measurement logs per sensor with automatic parent value sync.
+- **Rooms** - Physical campus locations (libraries, labs, halls) with capacity management.
+- **Sensors** - IoT devices deployed inside rooms (Temperature, CO2, Occupancy).
+- **Sensor Readings** - Historical measurement logs per sensor with automatic parent value sync.
 
 ### Architecture Decisions
 
