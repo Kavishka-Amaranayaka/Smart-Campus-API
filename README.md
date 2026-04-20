@@ -6,19 +6,19 @@ A fully RESTful JAX-RS API built with Jersey 2.39.1 on Apache Tomcat for managin
 
 This API provides a robust, scalable interface for the University's Smart Campus initiative. It manages three core resources:
 
-- **Rooms** — Physical campus locations (libraries, labs, halls) with capacity management.
-- **Sensors** — IoT devices deployed inside rooms (Temperature, CO2, Occupancy).
-- **Sensor Readings** — Historical measurement logs per sensor with automatic parent value sync.
+**Rooms** - Physical campus locations (libraries, labs, halls) with capacity management.
+**Sensors** - IoT devices deployed inside rooms (Temperature, CO2, Occupancy).
+**Sensor Readings** - Historical measurement logs per sensor with automatic parent value sync.
 
 ### Architecture Decisions
 
-- **JAX-RS (Jersey 2.39.1)** — Pure JAX-RS implementation, no Spring Boot.
-- **In-memory storage** — ConcurrentHashMap for thread-safe data management (no database).
-- **Singleton DataStore** — Shared application state across all request-scoped resource instances.
-- **Sub-Resource Locator Pattern** — Sensor readings delegated to dedicated SensorReadingResource class.
-- **Exception Mappers** — Custom mappers for 409, 422, 403, and 500 HTTP responses.
-- **JAX-RS Filter** — Centralized request/response logging via ContainerRequestFilter & ContainerResponseFilter.
-- **HATEOAS** — Discovery endpoint provides navigational links to all resources.
+**JAX-RS (Jersey 2.39.1)** - Pure JAX-RS implementation, no Spring Boot.
+**In-memory storage** - ConcurrentHashMap for thread-safe data management (no database).
+**Singleton DataStore** - Shared application state across all request-scoped resource instances.
+**Sub-Resource Locator Pattern** - Sensor readings delegated to dedicated SensorReadingResource class.
+**Exception Mappers** - Custom mappers for 409, 422, 403, and 500 HTTP responses.
+**JAX-RS Filter** - Centralized request/response logging via ContainerRequestFilter & ContainerResponseFilter.
+**HATEOAS** - Discovery endpoint provides navigational links to all resources.
 
 ### Resource Hierarchy
 
@@ -80,12 +80,12 @@ Apache NetBeans IDE 25
 
 1. Click the green **Run** button
 2. Wait for Tomcat to deploy — Output window shows:
-   OK - Started application at context path [/Smart-Campus-Sensors-Rooms-Management-API]
+   OK - Started application at context path
 
 ### Step 6: Verify
 
 Open your browser or Postman and navigate to:
-http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1
+http://localhost:8080/Smart_Campus_API/api/v1
 
 You should see a JSON discovery response with API metadata and HATEOAS links.
 
@@ -120,15 +120,15 @@ POST        '/api/v1/sensors/{sensorId}/readings'   Add new reading           20
 ## Sample curl Commands
 
 ### 1. Discover the API
-curl -X GET http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1 \
+curl -X GET http://localhost:8080/Smart_Campus_API/api/v1 \
   -H "Accept: application/json"
 
 ### 2. Get All Rooms
-curl -X GET http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/rooms \
+curl -X GET http://localhost:8080/Smart_Campus_API/api/v1/rooms \
   -H "Accept: application/json"
 
 ### 3. Create a New Room
-curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/rooms \
+curl -X POST http://localhost:8080/Smart_Campus_API/api/v1/rooms \
   -H "Content-Type: application/json" \
   -d '{
     "id": "SCI-205",
@@ -137,11 +137,11 @@ curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api
   }'
 
 ### 4. Attempt to Delete a Room with Sensors (409 Conflict)
-curl -X DELETE http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/rooms/LIB-301 \
+curl -X DELETE http://localhost:8080/Smart_Campus_API/api/v1/rooms/LIB-301 \
   -H "Accept: application/json"
 
 ### 5. Register a Sensor with Invalid roomId (422 Unprocessable Entity)
-curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/sensors \
+curl -X POST http://localhost:8080/Smart_Campus_API/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{
     "id": "TEMP-999",
@@ -152,7 +152,7 @@ curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api
   }'
 
 ### 6. Register a Valid Sensor
-curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/sensors \
+curl -X POST http://localhost:8080/Smart_Campus_API/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{
     "id": "CO2-005",
@@ -163,21 +163,21 @@ curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api
   }'
 
 ### 7. Filter Sensors by Type
-curl -X GET "http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/sensors?type=CO2" \
+curl -X GET "http://localhost:8080/Smart_Campus_API/api/v1/sensors?type=CO2" \
   -H "Accept: application/json"
 
 ### 8. Post a Reading to a MAINTENANCE Sensor (403 Forbidden)
-curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/sensors/OCC-001/readings \
+curl -X POST http://localhost:8080/Smart_Campus_API/api/v1/sensors/OCC-001/readings \
   -H "Content-Type: application/json" \
   -d '{"value": 50}'
 
 ### 9. Post a Valid Sensor Reading
-curl -X POST http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/sensors/TEMP-001/readings \
+curl -X POST http://localhost:8080/Smart_Campus_API/api/v1/sensors/TEMP-001/readings \
   -H "Content-Type: application/json" \
   -d '{"value": 25.5}'
 
 ### 10. Get Reading History for a Sensor
-curl -X GET http://localhost:8080/Smart-Campus-Sensors-Rooms-Management-API/api/v1/sensors/TEMP-001/readings \
+curl -X GET http://localhost:8080/Smart_Campus_API/api/v1/sensors/TEMP-001/readings \
   -H "Accept: application/json"
 
 
