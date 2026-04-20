@@ -22,12 +22,12 @@ This API provides a robust, scalable interface for the University's Smart Campus
 
 ### Resource Hierarchy
 ```
-- **/api/v1**                              <- Discovery + HATEOAS links.
-- **/api/v1/rooms**                        <- Room collection.
-- **/api/v1/rooms/{roomId}**               <- Individual room.
-- **/api/v1/sensors**                      <- Sensor collection (supports ?type= filter).
-- **/api/v1/sensors/{sensorId}**           <- Individual sensor.
-- **/api/v1/sensors/{sensorId}/readings**  <- Sensor reading history (sub-resource).
+/api/v1                             <- Discovery + HATEOAS links.
+/api/v1/rooms                       <- Room collection.
+/api/v1/rooms/{roomId}              <- Individual room.
+/api/v1/sensors                     <- Sensor collection (supports ?type= filter).
+/api/v1/sensors/{sensorId}          <- Individual sensor.
+/api/v1/sensors/{sensorId}/readings <- Sensor reading history (sub-resource).
 ```
 
 ### Error Handling Strategy
@@ -230,22 +230,22 @@ Smart-Campus-API/
 ├── README.md
 └── src/main/
     ├── java/com/smartcampus/
-    │   ├── SmartCampusApplication.java      ← @ApplicationPath("/api/v1")
-    │   ├── DataStore.java                   ← Singleton, ConcurrentHashMap
+    │   ├── SmartCampusApplication.java      <- @ApplicationPath("/api/v1")
+    │   ├── DataStore.java                   <- Singleton, ConcurrentHashMap
     │   ├── model/
     │   │   ├── Room.java
     │   │   ├── Sensor.java
     │   │   └── SensorReading.java
     │   ├── resource/
-    │   │   ├── DiscoveryResource.java       ← Part 1.2 HATEOAS
-    │   │   ├── RoomResource.java            ← Part 2
-    │   │   ├── SensorResource.java          ← Part 3 + Sub-resource locator
-    │   │   └── SensorReadingResource.java   ← Part 4
+    │   │   ├── DiscoveryResource.java       <- Part 1.2 HATEOAS
+    │   │   ├── RoomResource.java            <- Part 2
+    │   │   ├── SensorResource.java          <- Part 3 + Sub-resource locator
+    │   │   └── SensorReadingResource.java   <- Part 4
     │   ├── exception/
-    │   │   ├── RoomNotEmptyException + Mapper        ← 409
-    │   │   ├── LinkedResourceNotFoundException + Mapper ← 422
-    │   │   ├── SensorUnavailableException + Mapper   ← 403
-    │   │   └── GlobalExceptionMapper                 ← 500
+    │   │   ├── RoomNotEmptyException + Mapper        <- 409
+    │   │   ├── LinkedResourceNotFoundException + Mapper <- 422
+    │   │   ├── SensorUnavailableException + Mapper   <- 403
+    │   │   └── GlobalExceptionMapper                 <- 500
     │   └── filter/
     │       └── LoggingFilter.java
     └── webapp/WEB-INF/
