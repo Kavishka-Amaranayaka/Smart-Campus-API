@@ -31,10 +31,12 @@ This API provides a robust, scalable interface for the University's Smart Campus
 
 ### Error Handling Strategy
 
-- **409 Conflict** - Deleting a room that still has sensors assigned. 
-- **422 Unprocessable Entity** - Registering a sensor with a non-existent roomId.
-- **403 Forbidden** - Posting a reading to a MAINTENANCE/OFFLINE sensor.
-- **500 Internal Server Error** - Any unexpected runtime error (no stack trace exposed). 
+| HTTP Status | Scenario |
+|-------------|----------|
+| 409 Conflict | Deleting a room that still has sensors assigned |
+| 422 Unprocessable Entity | Registering a sensor with a non-existent roomId |
+| 403 Forbidden | Posting a reading to a MAINTENANCE/OFFLINE sensor |
+| 500 Internal Server Error | Any unexpected runtime error (no stack trace exposed) |
 
 
 ## Build & Run Instructions
@@ -187,5 +189,5 @@ Sensor       'TEMP-001'    Temperature, **ACTIVE**, in LIB-301
 Sensor       'CO2-001'     CO2, **ACTIVE**, in LAB-101 
 Sensor       'OCC-001'     Occupancy, **MAINTENANCE**, in HALL-A
 
--> 'OCC-001' is in MAINTENANCE - use it to test **403 Forbidden** when posting readings.
--> 'LIB-301' has 'TEMP-001' assigned - use it to test **409 Conflict** when deleting.
+- 'OCC-001' is in MAINTENANCE - use it to test **403 Forbidden** when posting readings.
+- 'LIB-301' has 'TEMP-001' assigned - use it to test **409 Conflict** when deleting.
