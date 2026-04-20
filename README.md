@@ -43,10 +43,10 @@ This API provides a robust, scalable interface for the University's Smart Campus
 
 ### Prerequisites
 
-Java JDK 17 or higher
-Apache Maven 3.6+
-Apache Tomcat 9.x
-Apache NetBeans IDE 25
+- Java JDK 17 or higher
+- Apache Maven 3.6+
+- Apache Tomcat 9.x
+- Apache NetBeans IDE 25
 
 ### Step 1: Clone the Repository
 
@@ -91,8 +91,9 @@ You should see a JSON discovery response with API metadata and HATEOAS links.
 ## Endpoint Reference
 
 ### Discovery
-- ### Method  Endpoint    Description 
-  GET         '/api/v1'   API metadata + HATEOAS navigation links.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1` | API metadata + HATEOAS navigation links |
 
 ### Room Management
 ### Method  Endpoint                  Description                             Success 
