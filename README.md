@@ -22,23 +22,19 @@ This API provides a robust, scalable interface for the University's Smart Campus
 
 ### Resource Hierarchy
 
-/api/v1                              <- Discovery + HATEOAS links
-/api/v1/rooms                        <- Room collection
-/api/v1/rooms/{roomId}               <- Individual room
-/api/v1/sensors                      <- Sensor collection (supports ?type= filter)
-/api/v1/sensors/{sensorId}           <- Individual sensor
-/api/v1/sensors/{sensorId}/readings  <- Sensor reading history (sub-resource)
-
+**/api/v1**                              <- Discovery + HATEOAS links, 
+**/api/v1/rooms**                        <- Room collection, 
+**/api/v1/rooms/{roomId}**               <- Individual room,
+**/api/v1/sensors**                      <- Sensor collection (supports ?type= filter),
+**/api/v1/sensors/{sensorId}**           <- Individual sensor,
+**/api/v1/sensors/{sensorId}/readings**  <- Sensor reading history (sub-resource).
 
 ### Error Handling Strategy
 
-### HTTP Status                 ### Scenario 
-
-409 Conflict                    Deleting a room that still has sensors assigned 
-422 Unprocessable Entity        Registering a sensor with a non-existent roomId 
-403 Forbidden                   Posting a reading to a MAINTENANCE/OFFLINE sensor 
-500 Internal Server Error       Any unexpected runtime error (no stack trace exposed) 
-
+409 Conflict - Deleting a room that still has sensors assigned,  
+422 Unprocessable Entity - Registering a sensor with a non-existent roomId, 
+403 Forbidden - Posting a reading to a MAINTENANCE/OFFLINE sensor, 
+500 Internal Server Error - Any unexpected runtime error (no stack trace exposed). 
 
 
 ## Build & Run Instructions
